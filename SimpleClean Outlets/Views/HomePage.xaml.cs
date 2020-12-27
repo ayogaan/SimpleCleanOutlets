@@ -19,9 +19,36 @@ namespace SimpleClean_Outlets.Views
     /// </summary>
     public partial class HomePage : Window
     {
+        BrushConverter bc;
         public HomePage()
         {
+            bc = new BrushConverter();
             InitializeComponent();
+            btnOrders.Background = (Brush)bc.ConvertFrom("#DBC0E4");
+            btnHome.Background = (Brush)bc.ConvertFrom("#fff");
+            btnTransactions.Background = (Brush)bc.ConvertFrom("#fff");
+        }
+
+        private void btnTransactions_Click(object sender, RoutedEventArgs e)
+        {
+            btnTransactions.Background = (Brush)bc.ConvertFrom("#DBC0E4");
+            btnOrders.Background = (Brush)bc.ConvertFrom("#fff");
+            btnHome.Background = (Brush)bc.ConvertFrom("#fff");
+            pageControl.Source = new Uri("TransactionPage.xaml", UriKind.Relative);
+        }
+
+        private void btnOrders_Click(object sender, RoutedEventArgs e)
+        {
+            btnOrders.Background = (Brush)bc.ConvertFrom("#DBC0E4");
+            btnHome.Background = (Brush)bc.ConvertFrom("#fff");
+            btnTransactions.Background = (Brush)bc.ConvertFrom("#fff");
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            btnHome.Background = (Brush)bc.ConvertFrom("#DBC0E4");
+            btnOrders.Background = (Brush)bc.ConvertFrom("#fff");
+            btnTransactions.Background = (Brush)bc.ConvertFrom("#fff");
         }
     }
 }

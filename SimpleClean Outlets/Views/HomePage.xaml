@@ -4,9 +4,124 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleClean_Outlets.Views"
-        mc:Ignorable="d"
-        Title="HomePage" Height="450" Width="800">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" Height="450" Width="1080" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" AllowsTransparency="True"
+        Background="#f5f5f5"
+        >
+    <Window.Resources>
+        <Style x:Key="myButton" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <ContentControl>
+                            <Grid>
+                                <Border Name="PressedBorder" Background="Transparent"  CornerRadius="20,0,0,20" BorderThickness="0,0,0,0">
+                                    <ContentPresenter/>
+                                </Border>
+                                <Border Name="NormalBorder"   BorderThickness="0"/>
+                            </Grid>
+                        </ContentControl>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True" >
+                                <Setter TargetName="PressedBorder" Property="Background" Value="white"  />
+                                <Setter TargetName="PressedBorder" Property="CornerRadius" Value="20,0,0,20"/>
+                                <Setter TargetName="PressedBorder" Property="BorderThickness" Value="0"/>
+
+                                <Setter TargetName="NormalBorder" Property="BorderThickness" Value="0"/>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Storyboard x:Key="sideBarOpen">
+            <DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="X"
+                BeginTime="00:00:00"
+                Storyboard.TargetName="moveBar">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.25" Value="0"/>
+
+
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sideBarClose">
+            <DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="X"
+                BeginTime="00:00:00"
+                Storyboard.TargetName="moveBar">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.25" Value="-250"/>
+
+
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnMenu">
+            <BeginStoryboard Storyboard="{StaticResource sideBarOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnClose">
+            <BeginStoryboard Storyboard="{StaticResource sideBarClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="app" Grid.Column="0">
+            <Border Background="#fff" Height="50" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" >
+                <Button  x:Name="btnMenu" HorizontalAlignment="Left" Background="{x:Null}" VerticalAlignment="Center" Margin="15" BorderBrush="{x:Null}">
+                    <materialDesign:PackIcon Foreground="Gray" Kind="menu" Width="20" Height="20"/>
+                </Button>
+                
+                </StackPanel>
+            </Border>
+
+            <Frame x:Name="pageControl" Source="OrdersPage.xaml" HorizontalAlignment="Stretch" Margin="50,100,50,31"  NavigationUIVisibility="Hidden">
+            </Frame>
+        </Grid>
+
+        <Grid x:Name="sideBar"  Background="#fff"   Width="250" HorizontalAlignment="Left"  Margin="0,0,0,0">
+            <Grid.RenderTransform  >
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform x:Name="moveBar" X="-250"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Button Margin="15" x:Name="btnClose" HorizontalAlignment="Right" Background="{x:Null}" VerticalAlignment="Top" BorderBrush="{x:Null}">
+                <materialDesign:PackIcon Foreground="Gray" Kind="Close" Width="20" Height="20"/>
+            </Button>
+
+            <StackPanel Margin="15,50,0,0" >
+                <Label Content="SimpleClean" Margin="20,0,0,10" FontSize="24"/>
+                <Button x:Name="btnHome" Padding="20,0,0,0"  Margin="10" Background="White" BorderThickness="0" Click="btnHome_Click" >
+                    <StackPanel Width="250" Orientation="Horizontal" Height="25">
+                        <materialDesign:PackIcon Foreground="#30B667" Margin="0,0,10,0" VerticalAlignment="Center" Kind="ViewDashboard" />
+                        <TextBlock VerticalAlignment="Center" Foreground="#30B667" HorizontalAlignment="Center" Text="DASHBOARD" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnOrders" Padding="20,0,0,0"  Margin="10" Background="White" BorderThickness="0" Click="btnOrders_Click" >
+                    <StackPanel Width="250" Orientation="Horizontal" Height="25">
+                        <materialDesign:PackIcon Foreground="#30B667" Margin="0,0,10,0" VerticalAlignment="Center" Kind="LocalLaundryService" />
+                        <TextBlock VerticalAlignment="Center" Foreground="#30B667" HorizontalAlignment="Left" Text="SALES ORDER" />
+                    </StackPanel>
+                </Button>
+                <Button Name="btnTransactions" Padding="20,0,0,0"  Margin="10" Background="White" BorderThickness="0" Click="btnTransactions_Click" >
+                    <StackPanel Width="250" Orientation="Horizontal" Height="25">
+                        <materialDesign:PackIcon Foreground="#30B667" Margin="0,0,10,0" VerticalAlignment="Center" Kind="Payment" />
+                        <TextBlock VerticalAlignment="Center" Foreground="#30B667" HorizontalAlignment="Center" Text="TRANSACTIONS" />
+                    </StackPanel>
+                </Button>
+               
+            </StackPanel>
+
+
+            
+           
+        </Grid>
     </Grid>
 </Window>
