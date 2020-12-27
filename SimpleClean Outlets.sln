@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleClean Outlets", "SimpleClean Outlets\SimpleClean Outlets.csproj", "{850F4828-AF6C-4E63-857D-3B31A784A3EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{850F4828-AF6C-4E63-857D-3B31A784A3EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850F4828-AF6C-4E63-857D-3B31A784A3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850F4828-AF6C-4E63-857D-3B31A784A3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850F4828-AF6C-4E63-857D-3B31A784A3EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AB6C90A-2025-476D-A4BB-3454D35DBEC1}
+	EndGlobalSection
+EndGlobal
