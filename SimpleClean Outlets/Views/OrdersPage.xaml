@@ -17,8 +17,8 @@
             <RowDefinition Height="100"/>
 
         </Grid.RowDefinitions>
-        <StackPanel  Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" Margin="20,0,0,0">
-            <Label Content=" Selected Content" Margin="0,0,30,0"/>
+        <StackPanel Height="60" Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,0,0">
+            <Label VerticalAlignment="Center" Content=" Selected Content" Margin="20,0,30,0"/>
             <Button HorizontalAlignment="Left" BorderThickness="0" VerticalAlignment="Center"  Background="#3498db">
             <StackPanel Orientation="Horizontal" >
                 
@@ -26,7 +26,7 @@
 
                 </StackPanel>
         </Button>
-            <Label Content="Diantar" />
+            <Label Content="Diantar" VerticalAlignment="Center" />
 
             <Button HorizontalAlignment="Left" BorderThickness="0" VerticalAlignment="Center"  Background="#3498db">
                 <StackPanel Orientation="Horizontal" >
@@ -43,8 +43,8 @@
 
                 </StackPanel>
             </Button>
-            <Label Content="0" />
-            <Label Content="Kg" />
+            <Label VerticalAlignment="Center" Content="0" />
+            <Label VerticalAlignment="Center" Content="Kg" />
             <Button HorizontalAlignment="Left" BorderThickness="0" VerticalAlignment="Center"  Background="#3498db">
                 <StackPanel Orientation="Horizontal" >
 
@@ -59,6 +59,19 @@
             </Button>
            
         </StackPanel>
-        
+        <ListView Margin="20" Name="lvUsers" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="120" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Customer" Width="250" DisplayMemberBinding="{Binding Age}" />
+                    <GridViewColumn Header="Date" Width="250" DisplayMemberBinding="{Binding Mail}" />
+                    <GridViewColumn Header="Berat" Width="150" DisplayMemberBinding="{Binding Mail}" />
+                    <GridViewColumn Header="Layanan" Width="150" DisplayMemberBinding="{Binding Mail}" />
+                    <GridViewColumn Header="Biaya" Width="150" DisplayMemberBinding="{Binding Mail}" />
+                    <GridViewColumn Header="Status" Width="150" DisplayMemberBinding="{Binding Mail}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Page>
