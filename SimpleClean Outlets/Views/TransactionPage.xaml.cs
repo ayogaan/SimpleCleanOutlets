@@ -22,11 +22,24 @@ namespace SimpleClean_Outlets.Views
     public partial class TransactionPage : Page
     {
         TransactionsController transactions;
+        public int Index;
         public TransactionPage()
         {
             transactions = new TransactionsController(this);
             InitializeComponent();
             transactions.GetTransaction();
+        }
+
+        private void lstTransaction_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Index = lstTransaction.SelectedIndex;
+            //transactions.updateBtn();   
+        }
+
+        private void btnConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            transactions.UpdateStat();
+            
         }
     }
 }

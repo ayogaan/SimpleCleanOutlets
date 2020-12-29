@@ -14,7 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
-            
+            <RowDefinition Height="80"/>
 
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Background="#DBC0E4"/>
@@ -27,7 +27,7 @@
             <Label Name="lblIncome" Content="Rp 100.000" FontSize="16" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0"/>
 
         </StackPanel>
-        <ListView Margin="20" Name="lstTransaction" Grid.Row="1">
+        <ListView Margin="20" Name="lstTransaction" Grid.Row="1" SelectionChanged="lstTransaction_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" Width="120" DisplayMemberBinding="{Binding transactionId}" />
@@ -39,5 +39,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Background="#DBC0E4" Grid.Row="2" x:Name="btnConfirm" Padding="20,0,20,0"  Margin="30,10,10,10" BorderThickness ="0" HorizontalAlignment="Left" Height="40" Click="btnConfirm_Click">
+            <StackPanel  Orientation="Horizontal" Height="25">
+                <materialDesign:PackIcon Foreground="Gray" Margin="0,0,10,0" VerticalAlignment="Center" Kind="Check" />
+                <TextBlock x:Name="lblBayar" VerticalAlignment="Center" Foreground="Gray" HorizontalAlignment="Center" Text="Konfirmasi Pembayaran" />
+            </StackPanel>
+        </Button>
     </Grid>
 </Page>

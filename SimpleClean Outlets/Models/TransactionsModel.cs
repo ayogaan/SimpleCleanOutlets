@@ -59,8 +59,31 @@ namespace SimpleClean_Outlets.Models
             }
 
 
+        }
+
+        public bool ConfirmPayment(string PaymentId,string status) {
+            bool flag = false;
+            query = "update invoice set status = '"+status+"' where id_order ="+PaymentId;
+            openConnSql();
+            sqlConnection.Open();
+            using (command = new SqlCommand(query, sqlConnection))
+            {
+                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        flag = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("update error : " + e.ToString());
                     }
                 }
+            }
+            return flag;
+        }
+    }
 
     
 }
