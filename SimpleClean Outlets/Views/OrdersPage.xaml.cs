@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleClean_Outlets.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace SimpleClean_Outlets.Views
     /// </summary>
     public partial class OrdersPage : Page
     {
+        OrderController order;
         public OrdersPage()
         {
+            
             InitializeComponent();
+            order = new OrderController(this);
         }
     }
 }

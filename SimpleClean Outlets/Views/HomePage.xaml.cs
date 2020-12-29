@@ -42,6 +42,7 @@ namespace SimpleClean_Outlets.Views
             btnOrders.Background = (Brush)bc.ConvertFrom("#DBC0E4");
             btnHome.Background = (Brush)bc.ConvertFrom("#fff");
             btnTransactions.Background = (Brush)bc.ConvertFrom("#fff");
+            pageControl.Source = new Uri("OrdersPage.xaml", UriKind.Relative);
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)

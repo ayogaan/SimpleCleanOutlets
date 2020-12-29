@@ -59,16 +59,16 @@
             </Button>
            
         </StackPanel>
-        <ListView Margin="20" Name="lvUsers" Grid.Row="1">
+        <ListView Margin="20" Name="lstOrders" Grid.Row="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" Width="120" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Customer" Width="250" DisplayMemberBinding="{Binding Age}" />
-                    <GridViewColumn Header="Date" Width="250" DisplayMemberBinding="{Binding Mail}" />
-                    <GridViewColumn Header="Berat" Width="150" DisplayMemberBinding="{Binding Mail}" />
-                    <GridViewColumn Header="Layanan" Width="150" DisplayMemberBinding="{Binding Mail}" />
-                    <GridViewColumn Header="Biaya" Width="150" DisplayMemberBinding="{Binding Mail}" />
-                    <GridViewColumn Header="Status" Width="150" DisplayMemberBinding="{Binding Mail}" />
+                    <GridViewColumn Header="Id" Width="120" DisplayMemberBinding="{Binding OrderId}" />
+                    <GridViewColumn Header="Customer" Width="250" DisplayMemberBinding="{Binding Customer}" />
+                    <GridViewColumn Header="Date" Width="250" DisplayMemberBinding="{Binding Date}" />
+                    <GridViewColumn Header="Berat" Width="150" DisplayMemberBinding="{Binding Berat}" />
+                    <GridViewColumn Header="Layanan" Width="150" DisplayMemberBinding="{Binding Layanan}" />
+                    <GridViewColumn Header="Biaya" Width="150" DisplayMemberBinding="{Binding Bill}" />
+                    <GridViewColumn Header="Status" Width="150" DisplayMemberBinding="{Binding Status}" />
                 </GridView>
             </ListView.View>
         </ListView>

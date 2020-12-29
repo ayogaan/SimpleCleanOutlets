@@ -70,6 +70,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="ItemWrapper\OrderWrapper.cs" />
+    <Compile Include="ItemWrapper\TransactionWraper.cs" />
+    <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\Connection.cs" />
+    <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\TransactionsModel.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -114,10 +123,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Img\" />
-    <Folder Include="ItemWrapper\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\HomePage.xaml">

@@ -25,6 +25,9 @@ namespace SimpleClean_Outlets.Models
             openConnSql();
             sqlConnection.Open();
             int count = 0;
+            bool loginStat = false;
+            bool unameVal = false;
+            string name = null, address = null, level = null, phoneNum = null, accountId = null, userId = null, truePass = null;
             using (command = new SqlCommand(query, sqlConnection))
             {
                 using (reader = command.ExecuteReader())
@@ -34,11 +37,37 @@ namespace SimpleClean_Outlets.Models
                         count++;
                         if (count > 0)
                         {
+                            truePass = reader["password"].ToString();
+                            name = reader["name"].ToString();
+                            phoneNum = reader["phone_num"].ToString();
+                            address = reader["address"].ToString();
+                            userId = reader["id"].ToString();
+                            level = reader["privileges"].ToString();
+                            unameVal = true;
+                            break;
                         }
+                        
+                    }
+                    if ((unameVal) && (level == "1"))
+                    {
+                        if (pass == truePass)
+                        {
+                            loginStat = true;
+
+                        }
+                        else
+                        {
+                            message = "password salah";
+                        }
+                    }
+                    else
+                    {
+                        message = "akun tidak terdaftar";
+                        Console.WriteLine(message);
                     }
                 }
             }
-                        return true;
+                        return loginStat;
         }
     }
 }
