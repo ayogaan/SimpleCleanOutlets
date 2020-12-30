@@ -74,6 +74,7 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="ItemWrapper\OrderWrapper.cs" />
+    <Compile Include="ItemWrapper\StatusWrapper.cs" />
     <Compile Include="ItemWrapper\TransactionWraper.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\Connection.cs" />

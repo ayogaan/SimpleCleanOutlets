@@ -22,11 +22,34 @@ namespace SimpleClean_Outlets.Views
     public partial class OrdersPage : Page
     {
         OrderController order;
+        public int Index=-1;
         public OrdersPage()
         {
             
             InitializeComponent();
             order = new OrderController(this);
+        }
+
+        private void lstOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Index = lstOrders.SelectedIndex;
+            order.updateCBB();
+            order.UpdateTxt();
+        }
+
+       
+
+        private void txtWeight_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtWeight.Text == "-") {
+                txtWeight.IsEnabled = false;
+            }
+            
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            order.UpdateOrder();
         }
     }
 }

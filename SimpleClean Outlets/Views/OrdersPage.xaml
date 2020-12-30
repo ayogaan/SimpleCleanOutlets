@@ -19,47 +19,19 @@
         </Grid.RowDefinitions>
         <StackPanel Height="60" Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,0,0">
             <Label VerticalAlignment="Center" Content=" Selected Content" Margin="20,0,30,0"/>
-            <Button HorizontalAlignment="Left" BorderThickness="0" VerticalAlignment="Center"  Background="#3498db">
-            <StackPanel Orientation="Horizontal" >
-                
-                    <materialDesign:PackIcon Foreground="#fff" VerticalAlignment="Center" Kind="ArrowBack" />
 
-                </StackPanel>
-        </Button>
-            <Label Content="Diantar" VerticalAlignment="Center" />
+            <ComboBox x:Name="StatusLst" VerticalAlignment="Center" Width="120" BorderThickness="0" Background="#f5f5f5"/>
 
-            <Button HorizontalAlignment="Left" BorderThickness="0" VerticalAlignment="Center"  Background="#3498db">
-                <StackPanel Orientation="Horizontal" >
-
-                    <materialDesign:PackIcon Foreground="#fff" VerticalAlignment="Center" Kind="ArrowRight" />
-
-                </StackPanel>
-            </Button>
-
-            <Button HorizontalAlignment="Left" BorderThickness="0" VerticalAlignment="Center" Margin="20,0,0,0" Background="#3498db">
-                <StackPanel Orientation="Horizontal" >
-
-                    <materialDesign:PackIcon Foreground="#fff" VerticalAlignment="Center" Kind="ArrowBack" />
-
-                </StackPanel>
-            </Button>
-            <Label VerticalAlignment="Center" Content="0" />
-            <Label VerticalAlignment="Center" Content="Kg" />
-            <Button HorizontalAlignment="Left" BorderThickness="0" VerticalAlignment="Center"  Background="#3498db">
-                <StackPanel Orientation="Horizontal" >
-
-                    <materialDesign:PackIcon Foreground="#fff" VerticalAlignment="Center" Kind="ArrowRight" />
-
-                </StackPanel>
-            </Button>
-            <Button Margin="10,0,0,0" HorizontalAlignment="Left" BorderThickness="0" VerticalAlignment="Center"  Background="#3498db">
+            <TextBox x:Name="txtWeight" VerticalAlignment="Center" Width="80" Margin="10,0,0,0" TextChanged="txtWeight_TextChanged" />
+            <Label Content="Kg" VerticalAlignment="Center"/>
+            <Button x:Name="btnUpdate" BorderThickness="0" VerticalAlignment="Center" Background="AliceBlue" Click="btnUpdate_Click">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Foreground="#fff" Margin="10,0,10,0" VerticalAlignment="Center" Kind="PaperAirplane" />
                 </StackPanel>
             </Button>
            
         </StackPanel>
-        <ListView Margin="20" Name="lstOrders" Grid.Row="1">
+        <ListView Margin="20" Name="lstOrders" Grid.Row="1" SelectionChanged="lstOrders_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" Width="120" DisplayMemberBinding="{Binding OrderId}" />

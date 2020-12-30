@@ -14,16 +14,36 @@ namespace SimpleClean_Outlets.Controllers
         private OrderModel order;
         private OrdersPage page;
 
+
         public OrderController(OrdersPage page) {
             order = new OrderModel();
             this.page = page;
             SetView();
+            SetCBStatus();
         }
 
         public void SetView() {
             order.GetOrders();
             page.lstOrders.ItemsSource = order.orders;
         }
-
+        public void SetCBStatus() {
+            order.GetStatusList();
+           
+            page.StatusLst.ItemsSource = OrderModel.Status;
+            
+        }
+        public void updateCBB() {
+            if (page.Index >= 0)
+            {
+                page.StatusLst.Text = order.orders[page.Index].Status;
+            }
+        } 
+        public void UpdateTxt()
+        {
+            page.txtWeight.Text = order.orders[page.Index].Berat;
+        }
+        public void UpdateOrder() {
+            order.UpdateOrder((page.StatusLst.SelectedIndex+1).ToString(), order.orders[page.Index].IdOrder,page.txtWeight.Text);
+        }
     }
 }
