@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleClean_Outlets.Views"
         mc:Ignorable="d"
-        Title="RegisterPage" Height="450" Width="800">
-    <Grid>
-        
+        Title="RegisterPage" Height="700" Width="680">
+    <Grid Margin="-2,0,2,0">
+        <Grid.ColumnDefinitions>
+           
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+
+
+        <Label Grid.Row="2" Grid.Column="1"  Content="Copyright@KelompokKeren" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#5887FF" Grid.ColumnSpan="2" Margin="170,3"  />
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+            <Label Content="Welcome To SimpleClean" FontSize="20" FontWeight="Bold" Margin="10,10,0,0"/>
+            <Label Content="Cucianmu Rupiahku"  Margin="10,0,0,0"/>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" >
+            <Label Content="Username" Margin="26,20,30,0"/>
+            <TextBox x:Name="txtUsername" Height="23" Margin="30,0,30,0" Background="{x:Null}" />
+            <Label Content="Password" Margin="26,0,30,0"/>
+            <PasswordBox x:Name="txtPassword" Password="Password" Height="23" Margin="30,0,30,8" Background="{x:Null}"/>
+
+            <Label Content="Confirm Password" Margin="26,0,30,0"/>
+            <PasswordBox x:Name="txtPasswordCnfrm" Password="Password" Height="23" Margin="30,0,30,0" Background="{x:Null}"/>
+
+
+            <Label Content="Nama Outlets" Margin="26,8,30,0"/>
+            <TextBox x:Name="txtOutletsName" Height="23" Margin="30,0,30,0" Background="{x:Null}" />
+            <Label Content="Nomor telefon" Margin="26,8,30,0"/>
+            <TextBox x:Name="txtOutletsPhonr" Height="23" Margin="30,0,30,0" Background="{x:Null}" />
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="30,8,30,0">
+                <ComboBox Width="120" Margin="8" Text="--Profinsi--" />
+                <ComboBox Width="120" Margin="8" Text="--Kabupaten--" />
+                <ComboBox Width="120" Margin="8" Text="--Kota--" />
+                <ComboBox Width="120" Margin="8" Text="--Kelurahan--" />
+                
+            </StackPanel>
+            
+            <Label Content="Desa" Margin="26,8,30,0"/>
+            <TextBox x:Name="txtOutletsAlamat" Height="23" Margin="30,0,30,8" Background="{x:Null}" />
+
+            <Button x:Name="btnRegister" Content="Register" Height="22" Background="#5887FF" Foreground="White" 
+                                BorderBrush="#5887FF" Margin="33,0,297,0" Click="btnLogin_Click"/>
+
+
+            <Label x:Name="lblError" Content=""   FontStyle="Italic" Margin="37,10,36,10" Foreground="#fff"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,204,0,255" Grid.Row="1"/>
     </Grid>
 </Window>

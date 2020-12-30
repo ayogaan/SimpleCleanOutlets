@@ -42,6 +42,7 @@ namespace SimpleClean_Outlets.Models
         }
         public bool UpdateOrder(string status, string idOrder, string berat)
         {
+
             bool flag = false;
             query = "update orders set status_id = '" + status + "' ,total_harga="+Int32.Parse(berat)*4000+", berat='"+berat+"' where id=" + idOrder;
             Console.WriteLine(query);
@@ -66,7 +67,7 @@ namespace SimpleClean_Outlets.Models
         }
 
         public void GetStatusList() {
-            
+            Status.Clear();
             openConnSql();
             sqlConnection.Open();
             query = "select * from status";

@@ -69,5 +69,74 @@ namespace SimpleClean_Outlets.Models
             }
                         return loginStat;
         }
+        public bool Register()
+        {
+            bool flag = false;
+            query = "insert into account values ('"+uname+"', '"+pass+"','1')";
+            Console.WriteLine(query);
+            openConnSql();
+            sqlConnection.Open();
+            using (command = new SqlCommand(query, sqlConnection))
+            {
+                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        flag = true;
+                        RegisterCont();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("update error : " + e.ToString());
+                    }
+                }
+            }
+            return flag;
+        }
+
+        public bool RegisterCont()
+        {
+            bool flag = false;
+            query = "insert into outlets values ('"+ GetUsernameId() +"','name','address','nomermu')";
+            
+            Console.WriteLine(query);
+            openConnSql();
+            sqlConnection.Open();
+            using (command = new SqlCommand(query, sqlConnection))
+            {
+                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        flag = true;
+                        RegisterCont();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("insert error : " + e.ToString());
+                    }
+                }
+            }
+            return flag;
+        }
+        public string GetUsernameId() {
+            query = "select id from account where username ='"+uname+"'";
+            string id = "";
+            openConnSql();
+            sqlConnection.Open();
+            using (command = new SqlCommand(query, sqlConnection))
+            {
+                using (reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        id = reader["Id"].ToString();
+                    }
+                }
+            }
+                        return id;
+        }
     }
 }

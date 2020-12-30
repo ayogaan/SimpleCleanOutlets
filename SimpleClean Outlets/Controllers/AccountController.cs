@@ -13,10 +13,46 @@ namespace SimpleClean_Outlets.Controllers
     {
         AccountModel account;
         LoginPage login;
+        RegisterPage register;
+        private string error;
         public AccountController(LoginPage _login) {
 
             account = new AccountModel();
             login = _login;            
+        }
+
+        public AccountController(RegisterPage _register)
+        {
+            register = _register;
+            account = new AccountModel();
+        }
+
+        public bool RegisterValidate(){
+            bool stat = false;
+            if (register.txtPassword == register.txtPasswordCnfrm)
+            {
+                
+            }
+            else {
+                error = "Password tidak cocok";
+                stat = false;
+            }
+            
+            return stat;
+        }
+
+        public void Register() {
+            if (RegisterValidate())
+            {
+
+            }
+            else
+            {
+                var bc = new BrushConverter();
+                login.lblError.Content = error;
+                login.lblError.Background = (Brush)bc.ConvertFrom("#e74c3c");
+                login.UpdateLayout();
+            }
         }
 
         public void Login() {

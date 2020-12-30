@@ -33,8 +33,10 @@ namespace SimpleClean_Outlets.Views
         private void lstOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Index = lstOrders.SelectedIndex;
+            if (!lstOrders.Items.IsEmpty) { 
             order.updateCBB();
-            order.UpdateTxt();
+            //order.UpdateTxt();
+            }
         }
 
        
