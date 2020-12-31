@@ -102,13 +102,12 @@ namespace SimpleClean_Outlets.Controllers
 
         public bool RegisterValidate(){
             bool stat = false;
-            if (register.txtPassword == register.txtPasswordCnfrm)
+            if (register.txtPassword.Password == register.txtPasswordCnfrm.Password)
             {
-                
+                stat = true;
             }
             else {
-                error = "Password tidak cocok";
-                stat = false;
+                error = "Password tidak cocok";                
             }
             
             return stat;
@@ -117,14 +116,15 @@ namespace SimpleClean_Outlets.Controllers
         public void Register() {
             if (RegisterValidate())
             {
-
+                
+                account.Register(register.txtUsername.Text, register.txtPassword.Password, register.provinsiLst.Text+","+register.kabupatenLst.Text+ "," + register.kecamatanLst.Text+ "," + register.kelurahanLst.Text+ "," +register.txtOutletsAlamat.Text,register.txtOutletsName.Text ,register.txtOutletsPhonr.Text);
             }
             else
             {
                 var bc = new BrushConverter();
-                login.lblError.Content = error;
-                login.lblError.Background = (Brush)bc.ConvertFrom("#e74c3c");
-                login.UpdateLayout();
+                register.lblError.Content = error;
+                register.lblError.Background = (Brush)bc.ConvertFrom("#e74c3c");
+                register.UpdateLayout();
             }
         }
 

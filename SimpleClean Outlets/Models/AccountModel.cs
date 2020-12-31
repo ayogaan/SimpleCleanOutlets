@@ -70,7 +70,7 @@ namespace SimpleClean_Outlets.Models
             }
                         return loginStat;
         }
-        public bool Register()
+        public bool Register(string uname, string pass, string address, string outletsName, string phone)
         {
             bool flag = false;
             query = "insert into account values ('"+uname+"', '"+pass+"','1')";
@@ -85,7 +85,7 @@ namespace SimpleClean_Outlets.Models
                     {
                         command.ExecuteNonQuery();
                         flag = true;
-                        RegisterCont();
+                        RegisterCont(uname,address,outletsName, phone);
                     }
                     catch (Exception e)
                     {
@@ -96,10 +96,10 @@ namespace SimpleClean_Outlets.Models
             return flag;
         }
 
-        public bool RegisterCont()
+        public bool RegisterCont(string username,string address, string outletsName, string phone)
         {
             bool flag = false;
-            query = "insert into outlets values ('"+ GetUsernameId() +"','name','address','nomermu')";
+            query = "insert into outlets values ('"+ GetUsernameId(username) +"','"+outletsName+"','"+address+"','"+phone+"')";
             
             Console.WriteLine(query);
             openConnSql();
@@ -111,8 +111,7 @@ namespace SimpleClean_Outlets.Models
                     try
                     {
                         command.ExecuteNonQuery();
-                        flag = true;
-                        RegisterCont();
+                        flag = true;                       
                     }
                     catch (Exception e)
                     {
@@ -122,8 +121,8 @@ namespace SimpleClean_Outlets.Models
             }
             return flag;
         }
-        public string GetUsernameId() {
-            query = "select id from account where username ='"+uname+"'";
+        public string GetUsernameId(string username) {
+            query = "select id from account where username ='"+username+"'";
             string id = "";
             openConnSql();
             sqlConnection.Open();

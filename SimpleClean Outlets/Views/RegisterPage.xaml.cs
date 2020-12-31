@@ -32,8 +32,10 @@ namespace SimpleClean_Outlets.Views
             controller = new AccountController(this);
         }
 
+        //register
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            controller.Register();
 
         }
 
