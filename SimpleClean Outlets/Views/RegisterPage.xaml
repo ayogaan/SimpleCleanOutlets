@@ -21,7 +21,7 @@
 
         <Label Grid.Row="2" Grid.Column="1"  Content="Copyright@KelompokKeren" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#5887FF" Grid.ColumnSpan="2" Margin="170,3"  />
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
-            <Label Content="Welcome To SimpleClean" FontSize="20" FontWeight="Bold" Margin="10,10,0,0"/>
+            <Label Content="Register To SimpleClean" FontSize="20" FontWeight="Bold" Margin="10,10,0,0"/>
             <Label Content="Cucianmu Rupiahku"  Margin="10,0,0,0"/>
 
         </StackPanel>
@@ -40,18 +40,18 @@
             <Label Content="Nomor telefon" Margin="26,8,30,0"/>
             <TextBox x:Name="txtOutletsPhonr" Height="23" Margin="30,0,30,0" Background="{x:Null}" />
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="30,8,30,0">
-                <ComboBox Width="120" Margin="8" Text="--Profinsi--" />
-                <ComboBox Width="120" Margin="8" Text="--Kabupaten--" />
-                <ComboBox Width="120" Margin="8" Text="--Kota--" />
-                <ComboBox Width="120" Margin="8" Text="--Kelurahan--" />
+                <ComboBox x:Name="provinsiLst" Width="120" Margin="8" Text="--Profinsi--" SelectionChanged="provinsiLst_SelectionChanged" />
+                <ComboBox x:Name="kabupatenLst" Width="120" Margin="8" Text="--Kabupaten--" SelectionChanged="kabupatenLst_SelectionChanged"/>
+                <ComboBox x:Name="kecamatanLst" Width="120" Margin="8" Text="--Kota--" SelectionChanged="kecamatanLst_SelectionChanged" />
+                <ComboBox x:Name="kelurahanLst" Width="120" Margin="8" Text="--Kelurahan--" SelectionChanged="kelurahanLst_SelectionChanged" />
                 
             </StackPanel>
             
             <Label Content="Desa" Margin="26,8,30,0"/>
             <TextBox x:Name="txtOutletsAlamat" Height="23" Margin="30,0,30,8" Background="{x:Null}" />
 
-            <Button x:Name="btnRegister" Content="Register" Height="22" Background="#5887FF" Foreground="White" 
-                                BorderBrush="#5887FF" Margin="33,0,297,0" Click="btnLogin_Click"/>
+            <Button x:Name="btnRegister" Content="Register" Height="39" Background="#5887FF" Foreground="White" 
+                                BorderBrush="#5887FF" Margin="30,0,0,0" HorizontalAlignment="Left" Padding="10,10,10,10"  Click="btnLogin_Click" Width="135"/>
 
 
             <Label x:Name="lblError" Content=""   FontStyle="Italic" Margin="37,10,36,10" Foreground="#fff"/>

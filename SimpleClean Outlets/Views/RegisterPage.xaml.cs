@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleClean_Outlets.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +20,44 @@ namespace SimpleClean_Outlets.Views
     /// </summary>
     public partial class RegisterPage : Window
     {
+        AccountController controller;
+        public int SelectedProv;
+        public int SelectedKab;
+        public int SelectedKec;
+
         public RegisterPage()
         {
+            
             InitializeComponent();
+            controller = new AccountController(this);
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void kabupatenLst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedKab = kabupatenLst.SelectedIndex;
+            controller.GetKecLst();
+        }
+
+        private void provinsiLst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedProv=provinsiLst.SelectedIndex;
+            Console.WriteLine(SelectedProv);
+            controller.GetKabLst();
+        }
+
+        private void kecamatanLst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Console.WriteLine(kecamatanLst.SelectedIndex);
+            SelectedKec = kecamatanLst.SelectedIndex;
+            controller.getKelurahanLst();
+        }
+
+        private void kelurahanLst_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
