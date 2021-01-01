@@ -13,9 +13,13 @@ namespace SimpleClean_Outlets.Models
         private string query;
         private string message;
         private string uname;
+        private static string outlets;
+        private static string id;
         private string pass;
         public string Uname { get { return uname; } set { uname = value; } }
         public string Pass { get { return pass; } set { pass = value; } }
+        public static string Outlets { get { return outlets; } }
+        public static string OutletsId { get { return id; } }
 
         public string Message { get { return message; } }
         private SqlCommand command;
@@ -28,7 +32,7 @@ namespace SimpleClean_Outlets.Models
             int count = 0;
             bool loginStat = false;
             bool unameVal = false;
-            string name = null, address = null, level = null, phoneNum = null, accountId = null, userId = null, truePass = null;
+            string name = null, address = null, level = null, phoneNum = null, accountId = null, outletsId = null, truePass = null;
             using (command = new SqlCommand(query, sqlConnection))
             {
                 using (reader = command.ExecuteReader())
@@ -42,7 +46,7 @@ namespace SimpleClean_Outlets.Models
                             name = reader["name"].ToString();
                             phoneNum = reader["phone_num"].ToString();
                             address = reader["address"].ToString();
-                            userId = reader["id"].ToString();
+                            outletsId = reader["id"].ToString();
                             level = reader["privileges"].ToString();
                             unameVal = true;
                             break;
@@ -54,7 +58,8 @@ namespace SimpleClean_Outlets.Models
                         if (pass == truePass)
                         {
                             loginStat = true;
-
+                            outlets = name;
+                            id = outletsId;
                         }
                         else
                         {

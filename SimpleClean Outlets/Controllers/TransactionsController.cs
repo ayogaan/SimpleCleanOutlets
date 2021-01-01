@@ -19,6 +19,7 @@ namespace SimpleClean_Outlets.Controllers
         public TransactionsController(TransactionPage _transaction) {
             transactions = _transaction;
             transactionModel = new TransactionsModel();
+            
         }
 
         public void GetTransaction()
@@ -27,6 +28,7 @@ namespace SimpleClean_Outlets.Controllers
             transactions.lstTransaction.ItemsSource = transactionModel.transactions;
             transactionModel.GetOmzet();
             transactions.lblIncome.Content = "Rp." + transactionModel.Omset;
+            transactions.lblOutlets.Content = AccountModel.Outlets;
         }
 
         public void UpdateStat() {

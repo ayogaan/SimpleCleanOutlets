@@ -57,6 +57,7 @@ namespace SimpleClean_Outlets.Controllers
 
         public void GetKabLst()
         {
+            if (register.SelectedProv>=0) { 
             kabList.Clear();
             idkab.Clear();
             string Kabupaten = webClient.DownloadString("https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi="+idProf[register.SelectedProv]);
@@ -68,10 +69,12 @@ namespace SimpleClean_Outlets.Controllers
             }
             register.kabupatenLst.ItemsSource = kabList;
             register.kabupatenLst.Items.Refresh();
+            }
         }
 
         public void GetKecLst()
         {
+            if (register.SelectedKab >= 0) { 
             kecLst.Clear();
             idkec.Clear();
             string Kecamatan = webClient.DownloadString("https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=" + idkab[register.SelectedKab]);
@@ -83,9 +86,11 @@ namespace SimpleClean_Outlets.Controllers
             }
             register.kecamatanLst.ItemsSource = kecLst;
             register.kecamatanLst.Items.Refresh();
+            }
         }
 
         public void getKelurahanLst() {
+            if (register.SelectedKec >= 0) { 
             klrLst.Clear();
             idklr.Clear();
             Console.WriteLine(idkec[register.SelectedKec]);
@@ -98,6 +103,7 @@ namespace SimpleClean_Outlets.Controllers
                 
             }
             register.kelurahanLst.ItemsSource = klrLst;
+            }
         }
 
         public bool RegisterValidate(){
@@ -117,7 +123,12 @@ namespace SimpleClean_Outlets.Controllers
             if (RegisterValidate())
             {
                 
-                account.Register(register.txtUsername.Text, register.txtPassword.Password, register.provinsiLst.Text+","+register.kabupatenLst.Text+ "," + register.kecamatanLst.Text+ "," + register.kelurahanLst.Text+ "," +register.txtOutletsAlamat.Text,register.txtOutletsName.Text ,register.txtOutletsPhonr.Text);
+                if(account.Register(register.txtUsername.Text, register.txtPassword.Password, register.provinsiLst.Text+","+register.kabupatenLst.Text+ "," + register.kecamatanLst.Text+ "," + register.kelurahanLst.Text+ "," +register.txtOutletsAlamat.Text,register.txtOutletsName.Text, register.txtOutletsPhonr.Text))
+                {
+                    LoginPage login = new LoginPage();
+                    login.Show();
+                    register.Close();
+                }
             }
             else
             {

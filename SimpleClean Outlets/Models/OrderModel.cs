@@ -17,7 +17,7 @@ namespace SimpleClean_Outlets.Models
         public static List<String> Status = new List<String>();
         public void GetOrders() {
             orders.Clear();
-            query = "select orders.id,tanggal, users.name, total_harga, berat, layanan, status from orders join users on users.id = orders.id_users join status on status.id = orders.status_id where id_outlets = 2";
+            query = "select orders.id,tanggal, users.name, total_harga, berat, layanan, status from orders join users on users.id = orders.id_users join status on status.id = orders.status_id where id_outlets =" + AccountModel.OutletsId;
             openConnSql();
             sqlConnection.Open();
             using (command = new SqlCommand(query, sqlConnection))

@@ -21,7 +21,7 @@ namespace SimpleClean_Outlets.Models
             transactions.Clear();            
             openConnSql();
             sqlConnection.Open();
-            query = "select total_harga,users.name,invoice.date ,invoice.metode_bayar, orders.id, invoice.status from invoice join orders on orders.id = invoice.id_order join users on users.id=orders.id_users where orders.id_outlets=2";
+            query = "select total_harga,users.name,invoice.date ,invoice.metode_bayar, orders.id, invoice.status from invoice join orders on orders.id = invoice.id_order join users on users.id=orders.id_users where orders.id_outlets="+AccountModel.OutletsId;
             using (command = new SqlCommand(query, sqlConnection))
             {
                 using (reader = command.ExecuteReader())
@@ -44,7 +44,7 @@ namespace SimpleClean_Outlets.Models
         }
 
         public void GetOmzet() {
-            query = "select sum(orders.total_harga) as [total] from invoice join orders on orders.id = invoice.id_order  where orders.id_outlets = 2";
+            query = "select sum(orders.total_harga) as [total] from invoice join orders on orders.id = invoice.id_order  where orders.id_outlets =" + AccountModel.OutletsId;
             openConnSql();
             sqlConnection.Open();
             using (command = new SqlCommand(query, sqlConnection))
