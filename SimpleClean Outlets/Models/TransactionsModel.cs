@@ -44,7 +44,7 @@ namespace SimpleClean_Outlets.Models
         }
 
         public void GetOmzet() {
-            query = "select sum(orders.total_harga) as [total] from invoice join orders on orders.id = invoice.id_order  where orders.id_outlets =" + AccountModel.OutletsId;
+            query = "select sum(orders.total_harga) as [total] from invoice join orders on orders.id = invoice.id_order  where invoice.status='done' and orders.id_outlets =" + AccountModel.OutletsId;
             openConnSql();
             sqlConnection.Open();
             using (command = new SqlCommand(query, sqlConnection))
