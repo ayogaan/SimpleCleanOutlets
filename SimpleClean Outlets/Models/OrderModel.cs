@@ -15,6 +15,7 @@ namespace SimpleClean_Outlets.Models
         private string query;
         public List<OrderWrapper> orders = new List<OrderWrapper>();
         public static List<String> Status = new List<String>();
+        public static List<String> StatusId = new List<String>();
         public void GetOrders() {
             orders.Clear();
             query = "select orders.id,tanggal, users.name, total_harga, berat, layanan, status from orders join users on users.id = orders.id_users join status on status.id = orders.status_id where id_outlets =" + AccountModel.OutletsId;
@@ -44,7 +45,8 @@ namespace SimpleClean_Outlets.Models
         {
 
             bool flag = false;
-            query = "update orders set status_id = '" + status + "' ,total_harga="+Int32.Parse(berat)*4000+", berat='"+berat+"' where id=" + idOrder;
+            
+            query = "update orders set status_id = '" + StatusId[Int32.Parse(status)] + "' ,total_harga="+Int32.Parse(berat)*4000+", berat='"+berat+"' where id=" + idOrder;
             Console.WriteLine(query);
             openConnSql();
             sqlConnection.Open();
@@ -79,6 +81,9 @@ namespace SimpleClean_Outlets.Models
                     {
                         Status.Add(
                             reader["status"].ToString()                            
+                            );
+                        StatusId.Add(
+                            reader["id"].ToString()
                             );
                     }
 

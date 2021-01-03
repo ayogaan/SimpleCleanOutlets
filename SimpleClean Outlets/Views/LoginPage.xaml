@@ -33,6 +33,11 @@
             <PasswordBox x:Name="txtPassword" Password="Password" Height="23" Margin="30,0,30,20" Background="{x:Null}"/>
             <Button x:Name="btnLogin" Content="Login" Height="22" Background="#5887FF" Foreground="White" 
                                 BorderBrush="#5887FF" Margin="33,0,297,0" Click="btnLogin_Click"/>
+            <StackPanel  Margin="26,8,30,0" Orientation="Horizontal">
+                <Label Content="Dont have an account ?"/>
+                <Button Content="Register" Foreground="#30B667" Background="Transparent" BorderThickness="0"/>
+            </StackPanel>
+
 
 
             <Label x:Name="lblError" Content=""   FontStyle="Italic" Margin="37,10,36,10" Foreground="#fff"/>

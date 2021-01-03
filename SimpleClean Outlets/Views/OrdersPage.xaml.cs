@@ -35,7 +35,7 @@ namespace SimpleClean_Outlets.Views
             Index = lstOrders.SelectedIndex;
             if (!lstOrders.Items.IsEmpty) { 
             order.updateCBB();
-            //order.UpdateTxt();
+            order.UpdateTxt();
             }
         }
 

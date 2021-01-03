@@ -33,7 +33,7 @@ namespace SimpleClean_Outlets.Views
         private void lstTransaction_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Index = lstTransaction.SelectedIndex;
-            //transactions.updateBtn();   
+             
         }
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
