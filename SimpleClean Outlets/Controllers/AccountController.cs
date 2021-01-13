@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace SimpleClean_Outlets.Controllers
 {
@@ -16,6 +17,7 @@ namespace SimpleClean_Outlets.Controllers
         AccountModel account;
         LoginPage login;
         RegisterPage register;
+        ProfilePage profilePage;
         private string error;
         WebClient webClient;
         private List<string> provinsiList = new List<string>();
@@ -32,12 +34,27 @@ namespace SimpleClean_Outlets.Controllers
             login = _login;            
         }
 
+        public AccountController(ProfilePage pp)
+        {
+            profilePage = pp;
+            account = new AccountModel();
+            ImgSetter();
+            setContent();
+        }
+
         public AccountController(RegisterPage _register)
         {
             register = _register;
             account = new AccountModel();
             webClient =  new WebClient();
             GetProfinsiApi();
+        }
+
+        public void setContent()
+        {
+            profilePage.lblEmail.Content = AccountModel.Outlets;
+            profilePage.lblName.Content = AccountModel.Outlets;
+            
         }
 
         public void GetProfinsiApi()
@@ -157,6 +174,27 @@ namespace SimpleClean_Outlets.Controllers
                 login.lblError.Background = (Brush)bc.ConvertFrom("#e74c3c");
                 login.UpdateLayout();
             }
+
+        }
+        public void SetImg()
+        {
+            account.SetPP();
+            ImgSetter();
+        }
+
+        public void ImgSetter()
+        {
+
+            var fullFilePath = @"http://localhost/files/" + AccountModel.AccountId + ".jpg";
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+            bitmap.EndInit();
+
+            profilePage.imgProfil.ImageSource = bitmap;
+
+
 
         }
     }

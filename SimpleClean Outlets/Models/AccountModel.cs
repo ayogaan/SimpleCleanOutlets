@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SimpleClean_Outlets.Models
 {
@@ -20,12 +22,13 @@ namespace SimpleClean_Outlets.Models
         public string Pass { get { return pass; } set { pass = value; } }
         public static string Outlets { get { return outlets; } }
         public static string OutletsId { get { return id; } }
-
+        private static string accID;
+        public static string AccountId { get { return accID; } }
         public string Message { get { return message; } }
         private SqlCommand command;
         private SqlDataReader reader;
         public bool Login() {
-            query = "select * from account join outlets on outlets.id_account = account.id where privileges = 1 and username ='"+uname+"'";
+            query = "select name,password,outlets.id,address,privileges,phone_num, id_account from account join outlets on outlets.id_account = account.id where privileges = 1 and username ='" + uname+"'";
             Console.WriteLine(query);
             openConnSql();
             sqlConnection.Open();
@@ -48,6 +51,7 @@ namespace SimpleClean_Outlets.Models
                             address = reader["address"].ToString();
                             outletsId = reader["id"].ToString();
                             level = reader["privileges"].ToString();
+                            accountId = reader["id_account"].ToString();
                             unameVal = true;
                             break;
                         }
@@ -60,6 +64,10 @@ namespace SimpleClean_Outlets.Models
                             loginStat = true;
                             outlets = name;
                             id = outletsId;
+                            accID = accountId;
+                            Console.WriteLine(id);
+                            Console.WriteLine(outlets);
+
                         }
                         else
                         {
@@ -78,7 +86,7 @@ namespace SimpleClean_Outlets.Models
         public bool Register(string uname, string pass, string address, string outletsName, string phone)
         {
             bool flag = false;
-            query = "insert into account values ('"+uname+"', '"+pass+"','1')";
+            query = "insert into account values ('"+uname+"', '"+pass+"','1',null)";
             Console.WriteLine(query);
             openConnSql();
             sqlConnection.Open();
@@ -143,6 +151,46 @@ namespace SimpleClean_Outlets.Models
             }
                         return id;
         }
-        
+        public void SetPP()
+        {
+            System.Windows.Forms.OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
+            open.Filter = "JPG(*.jpg, *.jpeg) | *.jpg; *.jpeg | TIFF(*.tif, *.tiff) | *.tif; *.tiff";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    File.Delete(@"C:\Desktop\" + accID + ".jpg");
+                    wc.Headers.Add("Content-Type", "binary/octet-stream");
+                    File.Copy(open.FileName, @"C:\Desktop\" + accID + ".jpg");
+
+                    byte[] result = wc.UploadFile("http://localhost/", "POST",
+                                                      @"C:\Desktop\" + accID + ".jpg");
+
+                    string s = System.Text.Encoding.UTF8.GetString(result, 0, result.Length);
+                    Console.WriteLine(s);
+                    Console.WriteLine(open.FileName);
+                    File.Delete(@"C:\Desktop\" + accID + ".jpg");
+                }
+                query = "update account set ProfilPict ='" + accID + ".jpg' where id ='" + accID + "'";
+                Console.WriteLine(query);
+                openConnSql();
+                sqlConnection.Open();
+                using (command = new SqlCommand(query, sqlConnection))
+                {
+                    using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                    {
+                        try
+                        {
+                            command.ExecuteNonQuery();
+
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("insert error : " + e.ToString());
+                        }
+                    }
+                }
+            }
+        }
     }
 }

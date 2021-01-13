@@ -35,7 +35,7 @@
                                 BorderBrush="#5887FF" Margin="33,0,297,0" Click="btnLogin_Click"/>
             <StackPanel  Margin="26,8,30,0" Orientation="Horizontal">
                 <Label Content="Dont have an account ?"/>
-                <Button Content="Register" Foreground="#30B667" Background="Transparent" BorderThickness="0"/>
+                <Button Content="Register" Foreground="#30B667" Background="Transparent" BorderThickness="0" Click="Button_Click"/>
             </StackPanel>
 
 

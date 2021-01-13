@@ -28,6 +28,7 @@ namespace SimpleClean_Outlets.Controllers
             transactions.lstTransaction.ItemsSource = transactionModel.transactions;
             transactionModel.GetOmzet();
             transactions.lblIncome.Content = "Rp." + transactionModel.Omset;
+            Console.WriteLine("ini nama outlet"+AccountModel.OutletsId);
             transactions.lblOutlets.Content = AccountModel.Outlets;
         }
 

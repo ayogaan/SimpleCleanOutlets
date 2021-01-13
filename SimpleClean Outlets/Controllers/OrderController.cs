@@ -43,13 +43,14 @@ namespace SimpleClean_Outlets.Controllers
             if (page.Index >= 0)
             {
                 page.txtWeight.Text = order.orders[page.Index].Berat;
+                
             }
         }
         public void UpdateOrder() {
             if (page.Index >= 0)
             {
                 if (
-                order.UpdateOrder((page.StatusLst.SelectedIndex).ToString(), order.orders[page.Index].IdOrder, page.txtWeight.Text)
+                order.UpdateOrder((page.StatusLst.SelectedIndex).ToString(), order.orders[page.Index].IdOrder, page.txtWeight.Text,page.Index)
                 )
                 {
                     order.GetOrders();

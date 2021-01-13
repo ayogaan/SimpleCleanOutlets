@@ -27,6 +27,7 @@ namespace SimpleClean_Outlets.Views
             btnOrders.Background = (Brush)bc.ConvertFrom("#DBC0E4");
             btnHome.Background = (Brush)bc.ConvertFrom("#fff");
             btnTransactions.Background = (Brush)bc.ConvertFrom("#fff");
+            pageControl.Source = new Uri("TransactionPage.xaml", UriKind.Relative);
         }
 
         private void btnTransactions_Click(object sender, RoutedEventArgs e)
@@ -50,6 +51,7 @@ namespace SimpleClean_Outlets.Views
             btnHome.Background = (Brush)bc.ConvertFrom("#DBC0E4");
             btnOrders.Background = (Brush)bc.ConvertFrom("#fff");
             btnTransactions.Background = (Brush)bc.ConvertFrom("#fff");
+            pageControl.Source = new Uri("ProfilePage.xaml", UriKind.Relative);
         }
     }
 }

@@ -32,5 +32,12 @@ namespace SimpleClean_Outlets.Views
             account.Login();
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterPage rp = new RegisterPage();
+            rp.Show();
+            this.Close();
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace SimpleClean_Outlets.Models
         public void GetOrders() {
             orders.Clear();
             query = "select orders.id,tanggal, users.name, total_harga, berat, layanan, status from orders join users on users.id = orders.id_users join status on status.id = orders.status_id where id_outlets =" + AccountModel.OutletsId;
+            Console.WriteLine(query);
             openConnSql();
             sqlConnection.Open();
             using (command = new SqlCommand(query, sqlConnection))
@@ -41,13 +42,17 @@ namespace SimpleClean_Outlets.Models
                 }
             }
         }
-        public bool UpdateOrder(string status, string idOrder, string berat)
+        public bool UpdateOrder(string status, string idOrder, string berat,int id)
         {
 
             bool flag = false;
-            
-            query = "update orders set status_id = '" + StatusId[Int32.Parse(status)] + "' ,total_harga="+Int32.Parse(berat)*4000+", berat='"+berat+"' where id=" + idOrder;
-            Console.WriteLine(query);
+            if (orders[id].Layanan.ToUpper() == "KILOAN") { 
+            query = "update orders set status_id = '" + StatusId[Int32.Parse(status)] + "',total_harga='"+Int32.Parse(berat)*4000+"', berat='"+berat+"' where id=" + idOrder;
+                Console.WriteLine(query);
+            }
+            else { 
+            query = "update orders set status_id = '" + StatusId[Int32.Parse(status)] + "' where id=" + idOrder;
+            }
             openConnSql();
             sqlConnection.Open();
             using (command = new SqlCommand(query, sqlConnection))
